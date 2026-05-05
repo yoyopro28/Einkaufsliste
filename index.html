@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Einkaufsliste</title>
+  <title>Einkauf & To-dos</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
-  <div class="mx-auto flex min-h-screen w-full max-w-2xl items-start justify-center px-4 py-6 sm:px-6 lg:px-8">
+  <div class="mx-auto flex min-h-screen w-full max-w-5xl items-start justify-center px-4 py-6 sm:px-6 lg:px-8">
     <div class="w-full">
       <div class="overflow-hidden rounded-3xl border border-white/10 bg-white/10 shadow-2xl backdrop-blur-xl">
 
@@ -21,11 +21,11 @@
               </p>
 
               <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                Einkaufsliste
+                Haushalt
               </h1>
 
               <p class="mt-2 max-w-md text-sm leading-relaxed text-slate-300 sm:text-base">
-                Schnell eintragen, bearbeiten und geräteübergreifend aktuell halten.
+                Einkaufsliste und To-dos gemeinsam verwalten.
               </p>
             </div>
 
@@ -56,44 +56,93 @@
 
         <!-- Login Hinweis -->
         <div id="loginNotice" class="border-b border-white/10 px-5 py-4 text-sm leading-relaxed text-slate-300 sm:px-8">
-          Bitte melde dich mit Google an, um die Einkaufsliste zu nutzen.
+          Bitte melde dich mit Google an, um die Listen zu nutzen.
         </div>
 
-        <!-- List -->
-        <div class="px-5 py-5 sm:px-8">
-          <div id="entryList" class="space-y-3">
-            <div class="rounded-2xl border border-dashed border-white/15 bg-white/5 px-4 py-8 text-center text-sm text-slate-300">
-              Noch keine Einträge vorhanden.
+        <!-- Listen -->
+        <div class="grid gap-5 px-5 py-5 sm:px-8 lg:grid-cols-2">
+
+          <!-- Einkaufsliste -->
+          <section class="rounded-3xl border border-white/10 bg-black/10 p-4 sm:p-5">
+            <div class="mb-4">
+              <p class="mb-2 inline-block rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">
+                Einkauf
+              </p>
+
+              <h2 class="text-2xl font-bold tracking-tight text-white">
+                Aktuelle Einkaufsliste
+              </h2>
+
+              <p class="mt-1 text-sm text-slate-300">
+                Alles, was gerade eingekauft werden muss.
+              </p>
             </div>
-          </div>
-        </div>
 
-        <!-- Form -->
-        <div class="border-t border-white/10 bg-black/10 px-5 py-5 sm:px-8">
-          <form id="gratitudeForm" class="hidden space-y-4">
-            <div>
-              <label for="gratitude" class="mb-2 block text-sm font-medium text-slate-200">
-                Was brauchen wir?
-              </label>
+            <div id="shoppingList" class="space-y-3">
+              <div class="rounded-2xl border border-dashed border-white/15 bg-white/5 px-4 py-8 text-center text-sm text-slate-300">
+                Noch keine Einträge vorhanden.
+              </div>
+            </div>
 
+            <form id="shoppingForm" class="hidden mt-5 space-y-3">
               <input
                 type="text"
-                id="gratitude"
+                id="shoppingInput"
                 placeholder="z. B. Hafermilch, Tomaten, Reis ..."
                 required
                 class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-slate-400 outline-none transition focus:border-emerald-400/50 focus:bg-white/15 focus:ring-4 focus:ring-emerald-400/10"
               />
+
+              <button
+                type="submit"
+                class="inline-flex w-full items-center justify-center rounded-2xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-900/30 transition hover:bg-emerald-400 active:scale-[0.99]"
+              >
+                Zur Einkaufsliste hinzufügen
+              </button>
+            </form>
+          </section>
+
+          <!-- To-do-Liste -->
+          <section class="rounded-3xl border border-white/10 bg-black/10 p-4 sm:p-5">
+            <div class="mb-4">
+              <p class="mb-2 inline-block rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-300">
+                To-do
+              </p>
+
+              <h2 class="text-2xl font-bold tracking-tight text-white">
+                To-do-Liste
+              </h2>
+
+              <p class="mt-1 text-sm text-slate-300">
+                Aufgaben, Erledigungen und gemeinsame Dinge.
+              </p>
             </div>
 
-            <button
-              type="submit"
-              class="inline-flex w-full items-center justify-center rounded-2xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-900/30 transition hover:bg-emerald-400 active:scale-[0.99] sm:text-base"
-            >
-              Hinzufügen
-            </button>
-          </form>
-        </div>
+            <div id="todoList" class="space-y-3">
+              <div class="rounded-2xl border border-dashed border-white/15 bg-white/5 px-4 py-8 text-center text-sm text-slate-300">
+                Noch keine To-dos vorhanden.
+              </div>
+            </div>
 
+            <form id="todoForm" class="hidden mt-5 space-y-3">
+              <input
+                type="text"
+                id="todoInput"
+                placeholder="z. B. Müll rausbringen, Paket abholen ..."
+                required
+                class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-slate-400 outline-none transition focus:border-sky-400/50 focus:bg-white/15 focus:ring-4 focus:ring-sky-400/10"
+              />
+
+              <button
+                type="submit"
+                class="inline-flex w-full items-center justify-center rounded-2xl bg-sky-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-900/30 transition hover:bg-sky-400 active:scale-[0.99]"
+              >
+                Zur To-do-Liste hinzufügen
+              </button>
+            </form>
+          </section>
+
+        </div>
       </div>
     </div>
   </div>
@@ -134,11 +183,20 @@
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
-    const entriesRef = ref(db, "entries");
+    // Deine bisherige Einkaufsliste bleibt auf "entries"
+    const shoppingRef = ref(db, "entries");
 
-    const entryList = document.getElementById("entryList");
-    const gratitudeForm = document.getElementById("gratitudeForm");
-    const gratitudeInput = document.getElementById("gratitude");
+    // Neue To-do-Liste
+    const todosRef = ref(db, "todos");
+
+    const shoppingList = document.getElementById("shoppingList");
+    const todoList = document.getElementById("todoList");
+
+    const shoppingForm = document.getElementById("shoppingForm");
+    const shoppingInput = document.getElementById("shoppingInput");
+
+    const todoForm = document.getElementById("todoForm");
+    const todoInput = document.getElementById("todoInput");
 
     const loginButton = document.getElementById("loginButton");
     const logoutButton = document.getElementById("logoutButton");
@@ -146,7 +204,8 @@
     const loginNotice = document.getElementById("loginNotice");
 
     let currentUser = null;
-    let unsubscribeEntries = null;
+    let unsubscribeShopping = null;
+    let unsubscribeTodos = null;
 
     const allowedEmails = [
       "joe.martens28@gmail.com",
@@ -188,89 +247,134 @@
 
         loginButton.classList.add("hidden");
         logoutButton.classList.remove("hidden");
-        gratitudeForm.classList.remove("hidden");
+        shoppingForm.classList.remove("hidden");
+        todoForm.classList.remove("hidden");
         loginNotice.classList.add("hidden");
 
         userInfo.textContent = getDisplayName(user);
 
-        startEntriesListener();
+        startListeners();
 
         return;
       }
 
       if (user && !isAllowedUser(user)) {
         currentUser = null;
-        stopEntriesListener();
+        stopListeners();
 
         loginButton.classList.remove("hidden");
         logoutButton.classList.add("hidden");
-        gratitudeForm.classList.add("hidden");
+        shoppingForm.classList.add("hidden");
+        todoForm.classList.add("hidden");
         loginNotice.classList.remove("hidden");
 
         userInfo.textContent = "Account nicht freigegeben";
 
-        alert("Dieser Google-Account ist für diese Einkaufsliste nicht freigegeben.");
+        alert("Dieser Google-Account ist für diese App nicht freigegeben.");
 
         await signOut(auth);
         return;
       }
 
       currentUser = null;
-      stopEntriesListener();
+      stopListeners();
 
       loginButton.classList.remove("hidden");
       logoutButton.classList.add("hidden");
-      gratitudeForm.classList.add("hidden");
+      shoppingForm.classList.add("hidden");
+      todoForm.classList.add("hidden");
       loginNotice.classList.remove("hidden");
 
       userInfo.textContent = "Nicht angemeldet";
     });
 
-    function startEntriesListener() {
-      if (unsubscribeEntries) return;
-
-      unsubscribeEntries = onValue(
-        entriesRef,
-        (snapshot) => {
-          renderEntries(snapshot.val());
-        },
-        (error) => {
-          console.error("Fehler beim Laden der Einträge:", error);
-
-          entryList.innerHTML = `
-            <div class="rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-8 text-center text-sm text-rose-200">
-              Fehler beim Laden der Einträge: ${escapeHtml(error.message)}
-            </div>
-          `;
-        }
-      );
-    }
-
-    function stopEntriesListener() {
-      if (unsubscribeEntries) {
-        unsubscribeEntries();
-        unsubscribeEntries = null;
+    function startListeners() {
+      if (!unsubscribeShopping) {
+        unsubscribeShopping = onValue(
+          shoppingRef,
+          (snapshot) => {
+            renderEntries({
+              data: snapshot.val(),
+              listElement: shoppingList,
+              listType: "shopping",
+              emptyText: "Noch keine Einträge vorhanden."
+            });
+          },
+          (error) => {
+            renderError(shoppingList, error);
+          }
+        );
       }
 
-      renderEntries(null);
+      if (!unsubscribeTodos) {
+        unsubscribeTodos = onValue(
+          todosRef,
+          (snapshot) => {
+            renderEntries({
+              data: snapshot.val(),
+              listElement: todoList,
+              listType: "todo",
+              emptyText: "Noch keine To-dos vorhanden."
+            });
+          },
+          (error) => {
+            renderError(todoList, error);
+          }
+        );
+      }
     }
 
-    function renderEntries(data) {
-      entryList.innerHTML = "";
+    function stopListeners() {
+      if (unsubscribeShopping) {
+        unsubscribeShopping();
+        unsubscribeShopping = null;
+      }
+
+      if (unsubscribeTodos) {
+        unsubscribeTodos();
+        unsubscribeTodos = null;
+      }
+
+      renderEntries({
+        data: null,
+        listElement: shoppingList,
+        listType: "shopping",
+        emptyText: "Noch keine Einträge vorhanden."
+      });
+
+      renderEntries({
+        data: null,
+        listElement: todoList,
+        listType: "todo",
+        emptyText: "Noch keine To-dos vorhanden."
+      });
+    }
+
+    function renderEntries({ data, listElement, listType, emptyText }) {
+      listElement.innerHTML = "";
 
       if (!data) {
-        entryList.innerHTML = `
+        listElement.innerHTML = `
           <div class="rounded-2xl border border-dashed border-white/15 bg-white/5 px-4 py-8 text-center text-sm text-slate-300">
-            Noch keine Einträge vorhanden.
+            ${escapeHtml(emptyText)}
           </div>
         `;
         return;
       }
 
-      const entriesArray = Object.entries(data).reverse();
+      const entriesArray = Object.entries(data)
+        .map(([id, entry], index) => ({ id, entry, index }))
+        .sort((a, b) => {
+          const aTime = a.entry.createdAt ?? a.index;
+          const bTime = b.entry.createdAt ?? b.index;
+          return bTime - aTime;
+        });
 
-      entriesArray.forEach(([id, entry]) => {
+      entriesArray.forEach(({ id, entry }) => {
         const entryDiv = document.createElement("div");
+
+        const isTodo = listType === "todo";
+        const isDone = !!entry.done;
 
         entryDiv.className =
           "group rounded-2xl border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-sm transition hover:bg-white/15 hover:shadow-xl";
@@ -278,7 +382,7 @@
         entryDiv.innerHTML = `
           <div class="flex items-start justify-between gap-3">
             <div class="min-w-0 flex-1">
-              <p class="break-words text-base font-semibold leading-relaxed text-white sm:text-lg">
+              <p class="break-words text-base font-semibold leading-relaxed text-white sm:text-lg ${isDone ? "line-through opacity-50" : ""}">
                 ${escapeHtml(entry.text)}
               </p>
 
@@ -290,10 +394,45 @@
                 <span class="inline-flex max-w-full rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-xs text-emerald-200">
                   ${escapeHtml(entry.name)}
                 </span>
+
+                ${
+                  entry.editedAt
+                    ? `
+                      <span class="inline-flex rounded-full border border-amber-400/20 bg-amber-400/10 px-2.5 py-1 text-xs text-amber-200">
+                        bearbeitet
+                      </span>
+                    `
+                    : ""
+                }
+
+                ${
+                  isTodo && isDone
+                    ? `
+                      <span class="inline-flex rounded-full border border-sky-400/20 bg-sky-400/10 px-2.5 py-1 text-xs text-sky-200">
+                        erledigt
+                      </span>
+                    `
+                    : ""
+                }
               </div>
             </div>
 
             <div class="flex shrink-0 items-center gap-2">
+              ${
+                isTodo
+                  ? `
+                    <button
+                      type="button"
+                      class="toggleDone inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-400/20 bg-sky-400/10 text-lg transition hover:bg-sky-400/20 active:scale-95"
+                      aria-label="Erledigt umschalten"
+                      title="Erledigt umschalten"
+                    >
+                      ${isDone ? "↩️" : "✅"}
+                    </button>
+                  `
+                  : ""
+              }
+
               <button
                 type="button"
                 class="edit inline-flex h-10 w-10 items-center justify-center rounded-xl border border-amber-400/20 bg-amber-400/10 text-lg transition hover:bg-amber-400/20 active:scale-95"
@@ -315,16 +454,45 @@
           </div>
         `;
 
+        const toggleButton = entryDiv.querySelector(".toggleDone");
+        if (toggleButton) {
+          toggleButton.addEventListener("click", () => {
+            toggleDone(id, entry, listType);
+          });
+        }
+
         entryDiv.querySelector(".delete").addEventListener("click", () => {
-          deleteEntry(id);
+          deleteEntry(id, listType);
         });
 
         entryDiv.querySelector(".edit").addEventListener("click", () => {
-          editEntry(id, entry);
+          editEntry(id, entry, listType);
         });
 
-        entryList.appendChild(entryDiv);
+        listElement.appendChild(entryDiv);
       });
+    }
+
+    function renderError(listElement, error) {
+      console.error("Fehler beim Laden:", error);
+
+      listElement.innerHTML = `
+        <div class="rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-8 text-center text-sm text-rose-200">
+          Fehler beim Laden: ${escapeHtml(error.message)}
+        </div>
+      `;
+    }
+
+    function getListPath(listType) {
+      if (listType === "shopping") return "entries";
+      if (listType === "todo") return "todos";
+      throw new Error("Unbekannte Liste: " + listType);
+    }
+
+    function getListRef(listType) {
+      if (listType === "shopping") return shoppingRef;
+      if (listType === "todo") return todosRef;
+      throw new Error("Unbekannte Liste: " + listType);
     }
 
     function escapeHtml(text) {
@@ -333,39 +501,49 @@
       return div.innerHTML;
     }
 
-    gratitudeForm.addEventListener("submit", async (event) => {
+    shoppingForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+      await addEntry("shopping", shoppingInput);
+    });
 
+    todoForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      await addEntry("todo", todoInput);
+    });
+
+    async function addEntry(listType, inputElement) {
       if (!currentUser) {
         alert("Bitte zuerst mit Google anmelden.");
         return;
       }
 
-      const name = getDisplayName(currentUser);
-      const text = gratitudeInput.value.trim();
-
+      const text = inputElement.value.trim();
       if (!text) return;
 
+      const name = getDisplayName(currentUser);
+
       try {
-        await push(entriesRef, {
+        await push(getListRef(listType), {
           uid: currentUser.uid,
           email: currentUser.email,
           name,
           text,
+          done: false,
           date: new Date().toLocaleString("de-DE", {
             dateStyle: "short",
             timeStyle: "short"
-          })
+          }),
+          createdAt: Date.now()
         });
 
-        gratitudeInput.value = "";
-        gratitudeInput.focus();
+        inputElement.value = "";
+        inputElement.focus();
       } catch (error) {
         alert("Fehler beim Speichern: " + error.message);
       }
-    });
+    }
 
-    async function deleteEntry(id) {
+    async function deleteEntry(id, listType) {
       if (!currentUser) {
         alert("Bitte zuerst mit Google anmelden.");
         return;
@@ -375,13 +553,13 @@
       if (!reallyDelete) return;
 
       try {
-        await remove(ref(db, `entries/${id}`));
+        await remove(ref(db, `${getListPath(listType)}/${id}`));
       } catch (error) {
         alert("Fehler beim Löschen: " + error.message);
       }
     }
 
-    async function editEntry(id, entry) {
+    async function editEntry(id, entry, listType) {
       if (!currentUser) {
         alert("Bitte zuerst mit Google anmelden.");
         return;
@@ -398,15 +576,32 @@
       }
 
       try {
-        await update(ref(db, `entries/${id}`), {
+        await update(ref(db, `${getListPath(listType)}/${id}`), {
           text: cleanText,
           editedAt: new Date().toLocaleString("de-DE", {
             dateStyle: "short",
             timeStyle: "short"
-          })
+          }),
+          updatedAt: Date.now()
         });
       } catch (error) {
         alert("Fehler beim Bearbeiten: " + error.message);
+      }
+    }
+
+    async function toggleDone(id, entry, listType) {
+      if (!currentUser) {
+        alert("Bitte zuerst mit Google anmelden.");
+        return;
+      }
+
+      try {
+        await update(ref(db, `${getListPath(listType)}/${id}`), {
+          done: !entry.done,
+          updatedAt: Date.now()
+        });
+      } catch (error) {
+        alert("Fehler beim Aktualisieren: " + error.message);
       }
     }
   </script>
